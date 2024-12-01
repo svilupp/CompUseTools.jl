@@ -1,5 +1,8 @@
 # CompUseTools.jl
 
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://svilupp.github.io/CompUseTools.jl/stable/) [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://svilupp.github.io/CompUseTools.jl/dev/) [![Build Status](https://github.com/svilupp/CompUseTools.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/svilupp/CompUseTools.jl/actions/workflows/CI.yml?query=branch%3Amain) [![Coverage](https://codecov.io/gh/svilupp/CompUseTools.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/svilupp/CompUseTools.jl) [![Aqua](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
+
+
 A Julia package designed to make it super easy to control your browser (computer) with AI, inspired by Anthropic's "Computer Use" capabilities in Claude 3.5.
 
 ## Overview

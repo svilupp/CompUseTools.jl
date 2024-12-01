@@ -1,17 +1,3 @@
-using Gumbo
-using AbstractTrees
-using DataStructures
-using ChromeDevToolsLite
-
-export AccessNode, html_to_accessibility_tree, extract_accessibility_tree
-
-struct AccessNode
-    role::String
-    name::String
-    states::Dict{String, Any}
-    children::Vector{AccessNode}
-end
-
 # Helper function to find element by ID
 function find_element_by_id(root::Gumbo.HTMLElement, id::AbstractString)
     if haskey(root.attributes, "id") && root.attributes["id"] == id
@@ -73,7 +59,8 @@ function get_accessible_name(elem::Gumbo.HTMLElement, root::Gumbo.HTMLElement)
         # Find label with matching 'for' attribute
         for child in PreOrderDFS(root)
             if isa(child, Gumbo.HTMLElement) && tag(child) == :label
-                if haskey(child.attributes, "for") && child.attributes["for"] == elem.attributes["id"]
+                if haskey(child.attributes, "for") &&
+                   child.attributes["for"] == elem.attributes["id"]
                     return get_element_text(child)
                 end
             end
@@ -156,7 +143,8 @@ function get_states(elem::Gumbo.HTMLElement)
     end
 
     # Check disabled state for form controls
-    if tag(elem) in [:button, :input, :select, :textarea] && haskey(elem.attributes, "disabled")
+    if tag(elem) in [:button, :input, :select, :textarea] &&
+       haskey(elem.attributes, "disabled")
         states["disabled"] = true
     end
 
@@ -216,7 +204,7 @@ Extract the accessibility tree from a webpage using ChromeDevTools.
 # Returns
 - `AccessNode`: Root node of the accessibility tree
 """
-function extract_accessibility_tree(url::String; port::Int=9222)
+function extract_accessibility_tree(url::String; port::Int = 9222)
     # Connect to Chrome
     browser = ChromeDevToolsLite.connect_browser("ws://localhost:$port")
 
@@ -245,5 +233,3 @@ function serialize_accessibility_tree(node::AccessNode, indent::Int = 0)
     end
     return result
 end
-
-export serialize_accessibility_tree

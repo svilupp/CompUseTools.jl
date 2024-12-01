@@ -1,7 +1,12 @@
 using Test
 using CompUseTools
+using Aqua
 
 @testset "CompUseTools.jl" begin
+    @testset "Code quality (Aqua.jl)" begin
+        Aqua.test_all(CompUseTools)
+    end
+
     # Basic package loading test
     @test isdefined(CompUseTools, :CompUseTools)
 
